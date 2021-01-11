@@ -23,7 +23,7 @@ Connect database with following setting:
     password: oracle
 
 
-init.sql generate dummy user after db docker container initialized.
+'01.init.sql' generate dummy user after db docker container initialized.
 
     hostname: localhost
 
