@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   oracle-db:
-    build: oracle-xe-11g
+    build: .
     ports:
       - 1521:1521
       - 5500:5500
