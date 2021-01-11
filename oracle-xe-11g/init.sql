@@ -18,60 +18,41 @@ INSERT INTO family (member_id, name, relation) VALUES (1, 'luke1', 'myself');
 INSERT INTO family (member_id, name, relation) VALUES (2, 'luke2', 'myself');
 INSERT INTO family (member_id, name, relation) VALUES (3, 'luke3', 'myself');
 
-CREATE SEQUENCE dept_seq START WITH 1;
-
 -- create dummy table with auto increment primary key
-CREATE TABLE staff (
-  id      NUMBER(10)    NOT NULL,
-  firstname   VARCHAR2(100) NOT NULL,
-  lastname   VARCHAR2(100) NOT NULL
+create table staff (
+  id number primary key,
+  firstname varchar2(100),
+  lastname varchar2(100)
 );
 
--- ALTER TABLE staff
---   ADD (
---     CONSTRAINT books_pk PRIMARY KEY (id)
---   );
-    
--- CREATE SEQUENCE books_sequence;
+CREATE SEQUENCE staff_id_seq;
 
--- CREATE OR REPLACE TRIGGER staff_on_insert
---   BEFORE INSERT ON staff
---   FOR EACH ROW
--- BEGIN
---   SELECT staff_sequence.nextval
---   INTO :new.id
---   FROM dual;
--- END;
+-- create trigger trg_staff_id
+--   before insert on staff
+--   for each row
+--     begin
+--       select staff_id_seq.nextval
+--       into :new.id
+--       from dual;
+--     end;
 
--- -- insert dummy data
--- INSERT INTO staff (firstname, lastname) VALUES ('firstname1', 'lastname1');
--- INSERT INTO staff (firstname, lastname) VALUES ('firstname2', 'lastname2');
--- INSERT INTO staff (firstname, lastname) VALUES ('firstname3', 'lastname3');
--- INSERT INTO staff (firstname, lastname) VALUES ('firstname4', 'lastname4');
--- INSERT INTO staff (firstname, lastname) VALUES ('firstname5', 'lastname5');
--- INSERT INTO staff (firstname, lastname) VALUES ('firstname6', 'lastname6');
--- INSERT INTO staff (firstname, lastname) VALUES ('firstname7', 'lastname7');
--- INSERT INTO staff (firstname, lastname) VALUES ('firstname8', 'lastname8');
--- INSERT INTO staff (firstname, lastname) VALUES ('firstname9', 'lastname9');
--- INSERT INTO staff (firstname, lastname) VALUES ('firstname10', 'lastname10');
-
-CREATE TABLE books (
-  id      NUMBER(10)    NOT NULL,
-  title   VARCHAR2(100) NOT NULL
-);
-
-ALTER TABLE books
-  ADD (
-    CONSTRAINT books_pk PRIMARY KEY (id)
-  );
-
-CREATE SEQUENCE books_sequence;
-
-CREATE OR REPLACE TRIGGER books_on_insert
-  BEFORE INSERT ON books
-  FOR EACH ROW
+CREATE TRIGGER staff_bi
+BEFORE INSERT ON staff
+FOR EACH ROW
 BEGIN
-  SELECT books_sequence.nextval
+  SELECT staff_id_seq.nextval
   INTO :new.id
   FROM dual;
 END;
+
+-- -- insert dummy data
+INSERT INTO staff (firstname, lastname) VALUES ('firstname1', 'lastname1');
+INSERT INTO staff (firstname, lastname) VALUES ('firstname2', 'lastname2');
+INSERT INTO staff (firstname, lastname) VALUES ('firstname3', 'lastname3');
+INSERT INTO staff (firstname, lastname) VALUES ('firstname4', 'lastname4');
+INSERT INTO staff (firstname, lastname) VALUES ('firstname5', 'lastname5');
+INSERT INTO staff (firstname, lastname) VALUES ('firstname6', 'lastname6');
+INSERT INTO staff (firstname, lastname) VALUES ('firstname7', 'lastname7');
+INSERT INTO staff (firstname, lastname) VALUES ('firstname8', 'lastname8');
+INSERT INTO staff (firstname, lastname) VALUES ('firstname9', 'lastname9');
+INSERT INTO staff (firstname, lastname) VALUES ('firstname10', 'lastname10');
