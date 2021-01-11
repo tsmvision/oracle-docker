@@ -4,7 +4,7 @@
 
 ## Oracle XE 11g 
 ### How to run docker containers.
-    $ docker-compose build
+    $ docker-compose build --no-cache
     $ docker-compose up
 
 ### credential
